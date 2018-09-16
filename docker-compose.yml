@@ -3,8 +3,8 @@ version: "3.5"
 services:
   app:
     build: .
-    # entrypoint: "sh docker-entrypoint.sh"
-    command: "bundle exec ruby bin/yellow_number"
+    entrypoint: "sh docker-entrypoint.sh"
+    command: "ruby bin/yellow_number"
     volumes:
       - .:/usr/src/app
       - bundle:/bundle

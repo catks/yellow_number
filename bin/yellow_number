@@ -17,7 +17,8 @@ time_spent = Benchmark.realtime do
     contacts = YellowNumber::Search::Strategies::VivoStrategy.new(browser: browser).call(address)
     formatted_contacts = YellowNumber::Output::FormatContacts.call(contacts)
 
-    File.open(address_output_filename.(address), 'a+') do |file|
+    output_path = File.join('output', address_output_filename.(address))
+    File.open(output_path, 'w') do |file|
       file.write(formatted_contacts)
     end
   end
