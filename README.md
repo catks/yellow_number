@@ -34,7 +34,7 @@ After that just run the app
 docker-compose run --rm app
 ```
 
-Yellow number will create a csv file for each address in input.txt and will place it in output folder.
+Yellow number will create a csv file for each address in input.txt and will place it in the output folder.
 
 ## TODO
 
