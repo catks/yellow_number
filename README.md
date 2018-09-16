@@ -1,6 +1,8 @@
 
 # Yellow Number
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/d132c156723f91e45756/maintainability)](https://codeclimate.com/github/catks/yellow_number/maintainability)
+
 Yellow Number search's for a contact info (name and telephone number) by address
 
 ## Installation
