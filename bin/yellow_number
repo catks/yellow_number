@@ -1,12 +1,28 @@
 #!/bin/env ruby
 
 require 'watir'
+require 'benchmark'
 require_relative '../lib/yellow_number'
 
 browser = Watir::Browser.new(:chrome, url: ENV['SELENIUM_URL'])
+input_filename = ARGV.first || 'input.txt'
 
-browser.goto 'watir.com'
-browser.link(text: 'Guides').click
+log = ->(text) { $stderr.puts "#{Time.now} - #{text}" }
+address_output_filename = ->(address) { "#{address[:street]}_#{address[:number]}_#{address[:city]}.csv" }
 
-puts browser.title
+time_spent = Benchmark.realtime do
+  File.readlines(input_filename).each do |address_line|
+    log.("Searching Contacts in #{address_line}")
+    address = YellowNumber::Input::AddressParser.call(address_line)
+    contacts = YellowNumber::Search::Strategies::VivoStrategy.new(browser: browser).call(address)
+    formatted_contacts = YellowNumber::Output::FormatContacts.call(contacts)
+
+    File.open(address_output_filename.(address), 'a+') do |file|
+      file.write(formatted_contacts)
+    end
+  end
+end
+
+log.("Done in #{time_spent} seconds")
 browser.close
+
