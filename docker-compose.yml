@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  app:
+    build: .
+    # entrypoint: "sh docker-entrypoint.sh"
+    command: "bundle exec ruby bin/yellow_number"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/bundle
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      - SELENIUM_URL=http://selenium:4444/wd/hub
+    depends_on:
+      - selenium
+
+  selenium:
+    image: "selenium/standalone-chrome-debug"
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+
+volumes:
+  bundle:

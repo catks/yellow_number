@@ -1,0 +1,12 @@
+#!/bin/env ruby
+
+require 'watir'
+require_relative '../lib/yellow_number'
+
+browser = Watir::Browser.new(:chrome, url: ENV['SELENIUM_URL'])
+
+browser.goto 'watir.com'
+browser.link(text: 'Guides').click
+
+puts browser.title
+browser.close

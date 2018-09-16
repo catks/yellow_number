@@ -1,0 +1,2 @@
+module YellowNumber
+end
