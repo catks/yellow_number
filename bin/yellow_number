@@ -4,6 +4,7 @@ require 'watir'
 require 'benchmark'
 require_relative '../lib/yellow_number'
 
+ADDRESS_PATTERN = /.+,\s*\d+\s*,\s*\w+\s*/
 browser = Watir::Browser.new(:chrome, url: ENV['SELENIUM_URL'])
 input_filename = ARGV.first || 'input.txt'
 
@@ -12,6 +13,8 @@ address_output_filename = ->(address) { "#{address[:street]}_#{address[:number]}
 
 time_spent = Benchmark.realtime do
   File.readlines(input_filename).each do |address_line|
+    next unless address_line.match?(ADDRESS_PATTERN)
+
     log.("Searching Contacts in #{address_line}")
     address = YellowNumber::Input::AddressParser.call(address_line)
     contacts = YellowNumber::Search::Strategies::VivoStrategy.new(browser: browser).call(address)

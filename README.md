@@ -17,7 +17,7 @@ docker-compose build
 
 ## Usage
 
-To use creates a `input.txt` file in the project directory, and adds the addresses you want yellow_number to search.
+To use create a `input.txt` file in the project directory, and add the addresses you want yellow_number to search.
 
 Example of `input.txt` contents:
 
@@ -38,10 +38,11 @@ Yellow number will create a csv file for each address in input.txt and will plac
 
 ## TODO
 
- 1. Add Search Strategies
- 2. Add Integration Tests
- 3. Add more output formats
- 4. Add a cli interface(to set output and search strategies)
+ 1. Add docker-entrypoint function to wait for selenium container
+ 2. Add Search Strategies
+ 3. Add Integration Tests
+ 4. Add more output formats
+ 5. Add a cli interface(to set output and search strategies)
 
 ## Contributing
 
