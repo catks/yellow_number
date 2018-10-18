@@ -20,7 +20,16 @@ validate_input() {
   fi
 }
 
+wait_selenium_server() {
+  while ! nc -z selenium 4444; do
+    echo "Waiting Selenium Server..."
+    sleep 1
+  done
+}
+
+
 validate_input
+wait_selenium_server
 
 exec bundle exec "$@"
 
