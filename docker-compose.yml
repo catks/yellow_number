@@ -7,7 +7,6 @@ services:
     command: "ruby bin/yellow_number"
     volumes:
       - .:/usr/src/app
-      - bundle:/bundle
     ports:
       - "3000:3000"
     stdin_open: true
@@ -22,6 +21,3 @@ services:
     ports:
       - "4444:4444"
       - "5900:5900"
-
-volumes:
-  bundle:
